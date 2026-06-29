@@ -1,0 +1,15 @@
+fastapi
+uvicorn
+pydantic
+python-dotenv
+requests
+loguru
+
+langchain
+openai
+
+pytest
+
+httpx
+
+asyncio
