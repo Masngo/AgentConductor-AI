@@ -1,36 +1,14 @@
-# 🎼 AgentConductor AI
+# AgentConductor AI
 
-## Enterprise Multi-Agent Orchestration Platform
+> **Enterprise AI orchestration platform that unifies AI agents, UiPath RPA, and human-in-the-loop workflows using UiPath Maestro. Enables resilient, scalable, and governed multi-agent business process automation across enterprise systems.**
 
-AgentConductor AI is an enterprise-grade orchestration system that unifies AI agents, RPA robots, and human decision-makers into a single governed workflow engine.
+## 🌟 Core Features Built
+* **FastAPI Orchestration Interface Gateway (`src/api/fastapi_app.py`)**: Central control plane exposing the multi-agent pipeline routes.
+* **UiPath Maestro Controller Engine (`src/orchestration/maestro_controller.py`)**: Handles the sequential execution matrix routing AI parameters directly to local Unattended Robotic loops.
+* **Data Schema Validation Middleware (`src/utils/json_validator.py`)**: Cleans, strips, and normalizes erratic LLM output responses into reliable structural parameters.
+* **Resilience Framework Guard (`src/orchestration/exception_handler.py`)**: Self-healing protocol catches AI hallucination states or link drops safely.
+* **Enterprise Control Dashboard (`frontend/index.html`)**: Elite dark-mode monitoring center with dynamic progress visual tracking lines.
 
-It acts as a **control plane for multi-agent systems**, inspired by UiPath Maestro.
-
----
-
-# 🚀 Inspiration
-
-Enterprise AI systems are powerful but fragmented. AI agents, APIs, and automation tools often operate in isolation, making it difficult to scale them into production-ready systems.
-
-We built AgentConductor AI to solve this gap by introducing a **central orchestration layer** that coordinates:
-
-- AI reasoning agents (LangChain)
-- Planning agents (CrewAI)
-- Conversational agents (AutoGen)
-- RPA execution (UiPath simulation)
-- Human-in-the-loop approvals
-
----
-
-# 🧠 What it does
-
-- Orchestrates multi-agent workflows
-- Routes tasks dynamically based on intent
-- Handles failures with fallback agents
-- Integrates human approval flows
-- Simulates UiPath RPA execution
-- Maintains full execution state tracking
-
----
-
-# 🏗 Architecture
+## 🛠️ How To Run
+1. Run backend server: `uvicorn src.api.fastapi_app:app --reload`
+2. Open frontend application dashboard directly by opening `frontend/index.html` in Chrome or navigating directly to `http://127.0.0.1:8000`.
