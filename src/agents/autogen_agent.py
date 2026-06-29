@@ -1,21 +1,26 @@
-from utils.logger import get_logger
+from typing import Dict, Any
+import logging
+from agents.base_agent import BaseAgent
 
-logger = get_logger()
+logger = logging.getLogger("AgentConductor")
 
-class AutoGenAgent:
+
+class AutoGenAgent(BaseAgent):
     """
-    Simulates conversational multi-agent AutoGen-style loop
+    Simulates AutoGen conversational multi-agent system
     """
 
-    def __init__(self):
-        self.history = []
+    def run(self, task: str) -> Dict[str, Any]:
 
-    def run(self, task: str) -> str:
-        logger.info(f"AutoGenAgent starting dialogue for: {task}")
+        logger.info(f"[AutoGenAgent] conversing on task: {task}")
 
-        self.history.append({"role": "user", "content": task})
-
-        assistant_reply = f"AutoGen reasoning completed for: {task}"
-        self.history.append({"role": "assistant", "content": assistant_reply})
-
-        return assistant_reply
+        return {
+            "agent": "AutoGen",
+            "task": task,
+            "dialogue": [
+                "Agent A: What is required?",
+                "Agent B: We need structured workflow analysis.",
+                "Agent A: Proceeding with decomposition."
+            ],
+            "result": "collaborative_decision_made"
+        }

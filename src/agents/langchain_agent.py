@@ -1,21 +1,24 @@
-from config.settings import settings
-from utils.logger import get_logger
+from typing import Dict, Any
+import logging
+from agents.base_agent import BaseAgent
 
-logger = get_logger()
+logger = logging.getLogger("AgentConductor")
 
-class LangChainAgent:
+
+class LangChainAgent(BaseAgent):
     """
-    LLM-based reasoning agent (simplified LangChain-style wrapper)
+    Simulates LangChain reasoning / extraction agent
     """
 
-    def __init__(self):
-        self.api_key = settings.OPENAI_API_KEY
+    def run(self, task: str) -> Dict[str, Any]:
 
-    def run(self, task: str) -> str:
-        logger.info(f"LangChainAgent received task: {task}")
+        logger.info(f"[LangChainAgent] processing task: {task}")
 
-        # Simulated LLM response (replace with real OpenAI/LangChain later)
-        response = f"[LangChainAgent] Processed task: {task}"
-
-        logger.info(f"LangChainAgent response: {response}")
-        return response
+        # Simulated reasoning output
+        return {
+            "agent": "LangChain",
+            "task": task,
+            "analysis": "Extracted structured business intent",
+            "entities": ["vendor", "amount", "invoice"],
+            "confidence": 0.91
+        }

@@ -1,20 +1,23 @@
-from utils.logger import get_logger
+from typing import Dict, Any
+import logging
+from agents.base_agent import BaseAgent
 
-logger = get_logger()
+logger = logging.getLogger("AgentConductor")
 
-class UiPathAgent:
+
+class UiPathAgent(BaseAgent):
     """
-    Bridge agent for RPA execution (UiPath or desktop automation)
+    Simulates UiPath RPA execution layer (ERP / Desktop automation)
     """
 
-    def __init__(self):
-        self.connected = True
+    def run(self, task: str) -> Dict[str, Any]:
 
-    def run(self, task: str) -> str:
-        logger.info(f"UiPathAgent executing automation: {task}")
+        logger.info(f"[UiPathAgent] executing RPA task: {task}")
 
-        # Simulated RPA action
-        action = f"UiPath Robot executed automation task: {task}"
-
-        logger.info(action)
-        return action
+        return {
+            "agent": "UiPathRPA",
+            "task": task,
+            "execution": "desktop_automation_triggered",
+            "system": "ERP/CRM simulation",
+            "status": "completed"
+        }

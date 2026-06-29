@@ -1,23 +1,27 @@
-from utils.logger import get_logger
+from typing import Dict, Any
+import logging
+from agents.base_agent import BaseAgent
 
-logger = get_logger()
+logger = logging.getLogger("AgentConductor")
 
-class CrewAIAgent:
+
+class CrewAIAgent(BaseAgent):
     """
-    Simulates CrewAI multi-agent collaboration behavior
+    Simulates CrewAI multi-agent planning system
     """
 
-    def __init__(self):
-        self.team = ["researcher", "planner", "executor"]
+    def run(self, task: str) -> Dict[str, Any]:
 
-    def run(self, task: str) -> str:
-        logger.info(f"CrewAIAgent starting collaborative workflow for: {task}")
+        logger.info(f"[CrewAIAgent] planning task: {task}")
 
-        research = f"Research complete for: {task}"
-        plan = f"Plan created for: {task}"
-        execution = f"Execution simulated for: {task}"
-
-        result = f"{research} -> {plan} -> {execution}"
-
-        logger.info("CrewAIAgent completed workflow")
-        return result
+        return {
+            "agent": "CrewAI",
+            "task": task,
+            "plan": [
+                "Analyze requirements",
+                "Break into subtasks",
+                "Assign to execution agents",
+                "Validate results"
+            ],
+            "status": "plan_generated"
+        }
