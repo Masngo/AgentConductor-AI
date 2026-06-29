@@ -1,23 +1,31 @@
-from src.utils.logger import get_logger
+import logging
 import traceback
+from typing import Dict, Any
 
-logger = get_logger()
+logger = logging.getLogger("AgentConductor")
+
 
 class ExceptionHandler:
     """
-    Central error handling for all workflows
+    Centralized error handling system for all workflows.
+    Used across AI agents, RPA, and orchestration engine.
     """
 
-    def handle(self, error: Exception, context: str = ""):
-        error_msg = str(error)
-        stack = traceback.format_exc()
+    def handle(self, error: Exception, context: str = "") -> Dict[str, Any]:
 
-        logger.error(f"ERROR CONTEXT: {context}")
+        error_msg = str(error)
+        stack_trace = traceback.format_exc()
+
+        logger.error("========== AGENTCONDUCTOR ERROR ==========")
+        logger.error(f"CONTEXT: {context}")
         logger.error(f"ERROR MESSAGE: {error_msg}")
-        logger.error(f"STACK TRACE:\n{stack}")
+        logger.error(f"STACK TRACE:\n{stack_trace}")
+        logger.error("==========================================")
 
         return {
-            "status": "failed",
+            "status": "FAILED",
+            "error_type": type(error).__name__,
             "context": context,
-            "error": error_msg
+            "message": error_msg,
+            "action": "REROUTE_TO_FALLBACK_OR_HUMAN"
         }
